@@ -54,7 +54,7 @@ def SendHome(Client):
     Client.close()
 #SendMedia
 def SendMedia(Client,MediaName):
-    f=open('download/'+MediaName,'rb')
+    f=open(MediaName,'rb')
     IMG=f.read()
     response_head="HTTP/1.1 200 OK\n\n"
     response_head=bytes(response_head,'utf-8')+IMG
@@ -63,11 +63,11 @@ def SendMedia(Client,MediaName):
 #SendDownload
 def SendDownload(Client,type):
     if('ginyu.jpg'in type):
-        SendMedia(Client,'ginyu.jpg')
+        SendMedia(Client,'download/ginyu.jpg')
     if('ginyu.mp4'in type):
-        SendMedia(Client,'ginyu.mp4')
+        SendMedia(Client,'download/ginyu.mp4')
     if('ginyu.mp3'in type):
-        SendMedia(Client,'ginyu.mp3')
+        SendMedia(Client,'download/ginyu.mp3')
 #CheckPassWord
 def CheckPass(request):
     USER='quang'#Chua link SQL!!!
