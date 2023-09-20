@@ -19,44 +19,55 @@ def readHTTPRequest(Server):
 def SendFileIndex(Client):
     f = open ('index.html')
     Index = f.read()
+    size=len(Index)
+    print(size,"bytes\n")
     f.close()
-    response_head="HTTP/1.1 200 OK\n\n"
+    response_head="""HTTP/1.0 200 OK
+Content-Lenght: %d\n
+"""%size
     response_head+=Index
     Client.send(response_head.encode())
-    Client.close()
 #Move 404
 def Move404(Client):
-    response = '''HTTP/1.1 301 Moved Permanently\nLocation: http://192.168.66.148/404.html\n\n'''
+    response = '''HTTP/1.0 301 Moved Permanently\nLocation: http://192.168.66.148/404.html\n\n'''
     Client.sendall(response.encode())
-    Client.close()
  #Gui 404
 def SendFile404(Client):
     f = open ('404.html')
     F404 = f.read()
+    size=len(F404)
+    print(size,"bytes\n")
     f.close()
-    response_head="HTTP/1.1 404 Not Found\n\n"
+    response_head="""HTTP/1.0 404 Not Found
+Content-Lenght: %d\n
+"""%size
     response_head+=F404
     Client.send(response_head.encode())
-    Client.close()   
 #MoveHome
 def MoveHome(Client):
-    response = '''HTTP/1.1 301 Moved Permanently\nLocation: http://192.168.66.148/home.html\n\n'''
+    response = '''HTTP/1.0 301 Moved Permanently\nLocation: http://192.168.66.148/home.html\n\n'''
     Client.sendall(response.encode())
-    Client.close()
 #SendHome
 def SendHome(Client):
     f = open ('home.html')
     home = f.read()
+    size=len(home)
+    print(size,"bytes\n")
     f.close()
-    response_head="HTTP/1.1 200 OK\n\n"
+    response_head="""HTTP/1.0 200 OK
+Content-Lenght: %d\n
+"""%size
     response_head+=home
     Client.send(response_head.encode())
-    Client.close()
 #SendMedia
 def SendMedia(Client,MediaName):
     f=open(MediaName,'rb')
     IMG=f.read()
-    response_head="HTTP/1.1 200 OK\n\n"
+    size=len(IMG)
+    print(size,"bytes\n")
+    response_head="""HTTP/1.1 200 OK
+Content-Lenght: %d\n
+"""%size
     response_head=bytes(response_head,'utf-8')+IMG
     Client.send(response_head)
     Client.close()
