@@ -1,4 +1,5 @@
 import socket
+import os
 import time
 
 #Tao Socket
@@ -19,7 +20,7 @@ def readHTTPRequest(Server):
 def SendFileIndex(Client):
     f = open ('index.html')
     Index = f.read()
-    size=len(Index)
+    size=os.path.getsize('index.html')
     print(size,"bytes\n")
     f.close()
     response_head="""HTTP/1.0 200 OK
@@ -35,7 +36,7 @@ def Move404(Client):
 def SendFile404(Client):
     f = open ('404.html')
     F404 = f.read()
-    size=len(F404)
+    size=os.path.getsize('404.html')
     print(size,"bytes\n")
     f.close()
     response_head="""HTTP/1.0 404 Not Found
@@ -51,7 +52,7 @@ def MoveHome(Client):
 def SendHome(Client):
     f = open ('home.html')
     home = f.read()
-    size=len(home)
+    size=os.path.getsize('home.html')
     print(size,"bytes\n")
     f.close()
     response_head="""HTTP/1.0 200 OK
@@ -63,7 +64,7 @@ Content-Lenght: %d\n
 def SendMedia(Client,MediaName):
     f=open(MediaName,'rb')
     IMG=f.read()
-    size=len(IMG)
+    size=os.path.getsize(MediaName)
     print(size,"bytes\n")
     response_head="""HTTP/1.1 200 OK
 Content-Lenght: %d\n

@@ -10,7 +10,7 @@ while True:
         Client,request=SocketDef.readHTTPRequest(Server)#Tao Socket Ao cho client va doc. Request
         #print(request)
         if(request):#Phan tich Request
-            headers = request.split('\n')#mang? cac dong``
+            headers = request.split('\r\n')#mang? cac dong``
             method=headers[0].split()[0]
             filename=headers[0].split()[1]
             print("Method:",method,"Location:",filename)
